@@ -1,0 +1,18 @@
+from flask import Flask, request, jsonify
+import os
+import psutil
+
+app = Flask(__name__)
+SECRET_TOKEN = "123456"
+
+@app.route("/")
+def home():
+    return "Server running"
+
+@app.route("/lock")
+def lock():
+    os.system("rundll32.exe user32.dll,LockWorkStation")
+    return "Locked"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
